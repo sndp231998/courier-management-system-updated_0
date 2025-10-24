@@ -1,7 +1,15 @@
+  
+  <?php
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+$login_type = $_SESSION['login_type'] ?? '';
+?>
+
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <div class="dropdown">
    	<a href="./" class="brand-link">
-        <?php if($_SESSION['login_type'] == 1): ?>
+        <?php if($login_type == 1): ?>
         <h3 class="text-center p-0 m-0"><b>ADMIN</b></h3>
         <?php else: ?>
         <h3 class="text-center p-0 m-0"><b>STAFF</b></h3>

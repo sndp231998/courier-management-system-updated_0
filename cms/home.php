@@ -1,7 +1,17 @@
-<?php include('db_connect.php') ?>
-<?php
-$twhere ="";
-if($_SESSION['login_type'] != 1)
+<?php 
+include('db_connect.php');
+
+// Start session (if not started)
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
+}
+
+// Prevent undefined key warnings
+$login_type = $_SESSION['login_type'] ?? '';
+$login_name = $_SESSION['login_name'] ?? '';
+
+$twhere = "";
+if ($login_type != 1)
   $twhere = "  ";
 ?>
 <!-- Info boxes -->
@@ -67,7 +77,7 @@ if($_SESSION['login_type'] != 1)
 	 <div class="col-12">
           <div class="card">
           	<div class="card-body">
-          		Welcome <?php echo $_SESSION['login_name'] ?>!
+          		Welcome <?php echo htmlspecialchars($login_name); ?>!
           	</div>
           </div>
       </div>
